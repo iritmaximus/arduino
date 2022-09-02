@@ -1,0 +1,56 @@
+   1               		.file	"led-ext.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               		.section	.text.startup.main,"ax",@progbits
+   9               	.global	main
+  11               	main:
+  12               	/* prologue: function */
+  13               	/* frame size = 0 */
+  14               	/* stack size = 0 */
+  15               	.L__stack_usage = 0
+  16 0000 259A      		sbi 0x4,5
+  17 0002 559A      		sbi 0xa,5
+  18               	.L2:
+  19 0004 2D9A      		sbi 0x5,5
+  20 0006 2FEF      		ldi r18,lo8(1599999)
+  21 0008 89E6      		ldi r24,hi8(1599999)
+  22 000a 98E1      		ldi r25,hlo8(1599999)
+  23 000c 2150      	1:	subi r18,1
+  24 000e 8040      		sbci r24,0
+  25 0010 9040      		sbci r25,0
+  26 0012 01F4      		brne 1b
+  27 0014 00C0      		rjmp .
+  28 0016 0000      		nop
+  29 0018 2D98      		cbi 0x5,5
+  30 001a 5D9A      		sbi 0xb,5
+  31 001c 2FEF      		ldi r18,lo8(1599999)
+  32 001e 89E6      		ldi r24,hi8(1599999)
+  33 0020 98E1      		ldi r25,hlo8(1599999)
+  34 0022 2150      	1:	subi r18,1
+  35 0024 8040      		sbci r24,0
+  36 0026 9040      		sbci r25,0
+  37 0028 01F4      		brne 1b
+  38 002a 00C0      		rjmp .
+  39 002c 0000      		nop
+  40 002e 5D98      		cbi 0xb,5
+  41 0030 00C0      		rjmp .L2
+  43               		.ident	"GCC: (GNU) 12.2.0"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 led-ext.c
+     /tmp/cc1hfrrI.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc1hfrrI.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc1hfrrI.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc1hfrrI.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc1hfrrI.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc1hfrrI.s:11     .text.startup.main:0000000000000000 main
+     /tmp/cc1hfrrI.s:27     .text.startup.main:0000000000000016 L0
+     /tmp/cc1hfrrI.s:38     .text.startup.main:000000000000002c L0
+     /tmp/cc1hfrrI.s:23     .text.startup.main:000000000000000c .L11
+     /tmp/cc1hfrrI.s:34     .text.startup.main:0000000000000022 .L12
+     /tmp/cc1hfrrI.s:18     .text.startup.main:0000000000000004 .L2
+
+NO UNDEFINED SYMBOLS
