@@ -79,7 +79,7 @@ analyze: $(TARGET).elf
 				$(NM) -S --size-sort -t decimal $(TARGET).elf
 
 isp: $(TARGET).hex
-				$(AVRDUDE) $(AVRDUDE_FLAGS) -U flash:w:$(TARGET).hex
+				sudo $(AVRDUDE) $(AVRDUDE_FLAGS) -U flash:w:$(TARGET).hex
 
 fuses:
 				$(AVRDUDE) $(AVRDUDE_FLAGS) -U lfuse:w:$(LFUSE):m -U hfuse:w:$(HFUSE):m

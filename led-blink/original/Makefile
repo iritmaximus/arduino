@@ -12,7 +12,7 @@ LFUSE = 0x9f
 HFUSE = 0xd1
 
 TARGET = firmware
-SRC = led-ext.c
+SRC = led.c
 OBJ = $(SRC:.c=.o)
 LST = $(SRC:.c=.lst)
 
@@ -31,11 +31,6 @@ CFLAGS += -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 CFLAGS += -ffunction-sections -fdata-sections
 CFLAGS += -Wall -Wstrict-prototypes
 CFLAGS += -Wa,-adhlns=$(<:.c=.lst)
-
-CFLAGS += --param=min-pagesize=0
-
-# If GCC 12+ Add --param=min-pagesize=0 to solve subscript error on AVR uC
-# "array subscript 0 is outside array bounds"
 
 LDFLAGS = -Wl,--gc-sections
 LDFLAGS += -Wl,--print-gc-sections
